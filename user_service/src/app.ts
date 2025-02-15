@@ -3,12 +3,15 @@ import express,{Request, Response, NextFunction} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import dotenv from 'dotenv'; 
+dotenv.config(); 
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import { dbConnect } from './database/db';
 
 var app = express();
-
+dbConnect()
 // view engine setup
 app.set('views', path.join(__dirname, "..",'views'));
 app.set('view engine', 'ejs');
